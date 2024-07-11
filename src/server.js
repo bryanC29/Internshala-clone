@@ -14,9 +14,20 @@ const userController = require("./controllers/user.controller");
 const pageController = require("./controllers/page.controller");
 const User = require("./models/user.model");
 
+const languages = ['en', 'hi', 'fr', 'de', 'es', 'zh'];
+
 // const domainController = require("./controllers/domain.controller");
 // const locationController = require("./controllers/location.controller");
 const internshipController = require("./controllers/internship.controller");
+
+app.use((req, res, next) => {
+  const selectedLang = req.query.lang || 'en'; // Default to English
+  if (!languages.includes(selectedLang)) {
+    return res.status(400).send('Invalid language');
+  }
+  req.lang = selectedLang;
+  next();
+});
 
 app.use("/users", userController);
 app.use("/pages", pageController);
