@@ -6,6 +6,7 @@
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "i18n": "^0.15.1",
     "mongoose": "^5.11.15",
     "nodemon": "^3.1.4"
   },
