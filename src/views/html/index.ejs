@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= typeof locale !== 'undefined' ? locale : 'en' %>">
   <head>
     <script
       src="https://kit.fontawesome.com/a13b999530.js"
@@ -25,6 +25,29 @@
     <title>Home</title>
   </head>
   <body>
+    <h1><%= __('Welcome') %></h1>
+    <select id="languageSelect">
+      <option value="sp" <%= typeof locale !== 'undefined' && locale === 'sp' ? 'selected' : '' %>>Spanish</option>
+      <option value="hi" <%= typeof locale !== 'undefined' && locale === 'hi' ? 'selected' : '' %>>Hindi</option>
+      <option value="pr" <%= typeof locale !== 'undefined' && locale === 'pr' ? 'selected' : '' %>>Português</option>
+      <option value="ch" <%= typeof locale !== 'undefined' && locale === 'ch' ? 'selected' : '' %>>Chinese</option>
+      <option value="fr" <%= typeof locale !== 'undefined' && locale === 'fr' ? 'selected' : '' %>>French</option>
+      <option value="en" <%= typeof locale !== 'undefined' && locale === 'en' ? 'selected' : '' %>>English</option>
+  </select>
+
+
+
+  <script>
+      document.getElementById('languageSelect').addEventListener('change', function() {
+          let selectedLang = this.value;
+          document.cookie = `lang=${selectedLang};path=/`;
+          let cookie  = 'lang=' + selectedLang + ';path=/';
+          console.log(cookie);
+          document.cookie = cookie;
+          console.log(selectedLang);
+          // location.reload();
+      });
+  </script>
     <header>
       <a class="logo" href="#">
         <img
